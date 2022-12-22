@@ -3,8 +3,6 @@
   become: true
           
   tasks:
-    - name: nik
-      action: ping 
     - name: Install Docker Module for Python
       pip:
         name: docker
@@ -17,7 +15,6 @@
     - name: Install Docker Module for Python
       pip:
         name: docker-compose
-      
     - name: docker-compose
       docker_compose:
         project_src: ./hw1/hw1

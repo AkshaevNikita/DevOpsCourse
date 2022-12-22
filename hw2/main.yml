@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  become: true
+          
+  tasks:
+    - name: nik
+      action: ping 
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+    - name: Clone repository
+      git:
+        repo: https://github.com/AkshaevNikita/DevOpsCourse
+        dest: ./hw1
+        clone: yes
+        update: yes
+    - name: Install Docker Module for Python
+      pip:
+        name: docker-compose
+      
+    - name: docker-compose
+      docker_compose:
+        project_src: ./hw1/hw1
+        state: present
+    - name: Recursively remove directory
+      ansible.builtin.file:
+        path: ./hw1
+        state: absent
